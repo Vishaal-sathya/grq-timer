@@ -197,9 +197,17 @@ function typeEffect() {
             setTimeout(() => {
                 let scrollingText = document.getElementById("scrolling-text-container");
                 scrollingText.style.display = "block";
+                scrollingText.style.opacity = "0";
+                setTimeout(() => {
+                    scrollingText.style.opacity = "1"; // Fade in effect
+                }, 0);
             
                 let timerContainer = document.getElementById("timer-container");
                 timerContainer.style.display = "block";
+                timerContainer.style.opacity = "0";
+                setTimeout(() => {
+                    timerContainer.style.opacity = "1"; // Fade in effect
+                }, 0);
                 
                 startCountdown();
             
@@ -210,7 +218,7 @@ function typeEffect() {
             
                 setTimeout(() => {
                     registerButton.style.opacity = "1"; // Fade in effect
-                }, 500);
+                }, 110);
             
             }, 1500);
             
@@ -219,3 +227,12 @@ function typeEffect() {
 }
 
 typeEffect();
+document.addEventListener("DOMContentLoaded", () => {
+    const registerButton = document.querySelector(".register-button");
+    const tooltipContainer = document.querySelector(".tooltip-container");
+
+    registerButton.addEventListener("click", () => {
+        registerButton.style.display = "none"; // Hide the register button
+        tooltipContainer.classList.add("show"); // Smoothly show the tooltip
+    });
+});
