@@ -1,0 +1,189 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fcfcfc;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: monospace;
+    font-size: 2rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.text {
+    border-right: 2px solid white;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 2;
+    font-size: 25px;
+}
+
+.shutter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 0;
+    background-color: black;
+    transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 3;
+}
+
+@font-face {
+    font-family: "Franchise";
+    src: url("fonts/Franchise-Free-Bold.otf") format("opentype");
+}
+
+.scrolling-text-container {
+    position: fixed;
+    top: 5%;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    display: none;
+    z-index: 10;
+    background: black;
+    padding: 10px 0;
+}
+
+.scrolling-text-wrapper {
+    display: flex;
+    width: max-content;
+    animation: scrollText 20s linear infinite;
+}
+
+.scrolling-text {
+    font-family: "Franchise", sans-serif;
+    font-size: 3rem;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.85);
+    padding-right: 50px;
+}
+
+/* Timer Styles */
+.timer-container {
+    margin-top: 50px;
+    position: fixed;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    display: none;
+    z-index: 10;
+    color: white;
+    text-align: center;
+}
+
+.countdown-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.time-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.time-digits {
+    display: flex;
+    gap: 5px;
+}
+
+.time-label {
+    font-size: 1rem;
+    color: white;
+    opacity: 0.7;
+    text-transform: uppercase;
+}
+
+.binary-digit {
+    display: inline-block;
+    width: 70px;
+    height: 100px;
+    position: relative;
+}
+
+.binary-pixel {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #333;
+    transition: background-color 0.3s;
+}
+
+.binary-pixel.active {
+    background-color: #fff;
+}
+
+@keyframes scrollText {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+.register-button {
+    display: none; /* Initially hidden */
+    opacity: 0; /* Start transparent */
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 10;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+    gap: 10px; /* Space between text and arrow */
+}
+
+/* Line stays centered and doesn't jump back */
+.register-button:before {
+    content: "";
+    display: inline-block;
+    height: 1px;
+    width: 0;
+    background-color: #fff;
+    transition: width 0.42s cubic-bezier(.25,.8,.25,1);
+    margin-right: 10px;
+    vertical-align: middle; /* Keeps it aligned */
+}
+
+.register-button:hover:before {
+    width: 3rem;
+}
+
+/* Arrow bounce animation */
+.arrow {
+    margin-top: -4px;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.register-button:hover .arrow {
+    animation: bounceArrow 1.2s infinite alternate ease-in-out;
+}
+
+/* Keyframes for arrow bounce */
+@keyframes bounceArrow {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(-5px); }
+}
